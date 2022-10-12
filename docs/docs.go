@@ -360,14 +360,14 @@ const docTemplate = `{
                         "BearerToken": []
                     }
                 ],
-                "description": "Set Task as Done by ID.",
+                "description": "Update Task by provided input.",
                 "produces": [
                     "application/json"
                 ],
                 "tags": [
                     "Task"
                 ],
-                "summary": "Set Task as Done.",
+                "summary": "Update Task.",
                 "parameters": [
                     {
                         "description": "the body to patch task",

@@ -115,8 +115,8 @@ type PatchTaskInput struct {
 }
 
 // PatchTask godoc
-// @Summary Set Task as Done.
-// @Description Set Task as Done by ID.
+// @Summary Update Task.
+// @Description Update Task by provided input.
 // @Tags Task
 // @Produce json
 // @Param Body body PatchTaskInput true "the body to patch task"

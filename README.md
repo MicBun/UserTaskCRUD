@@ -29,7 +29,6 @@ root
 -middlewares // middlewares for auth
 -models // Contains Models for database structure
 -routes // Contains Routes
--screenshot // Contains some Screenshot
 -utils // Conatins utility file for multiple uses
 .env // an env file
 .docker-compose.yml // docker related file

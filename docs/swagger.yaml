@@ -312,7 +312,7 @@ paths:
       - Task
   /task/PatchTask:
     patch:
-      description: Set Task as Done by ID.
+      description: Update Task by provided input.
       parameters:
       - description: the body to patch task
         in: body
@@ -332,7 +332,7 @@ paths:
           description: OK
       security:
       - BearerToken: []
-      summary: Set Task as Done.
+      summary: Update Task.
       tags:
       - Task
   /task/PostTask:
