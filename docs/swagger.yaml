@@ -1,0 +1,411 @@
+definitions:
+  controllers.CreateUserInput:
+    properties:
+      address:
+        type: string
+      name:
+        type: string
+      password:
+        type: string
+      salary:
+        type: integer
+      username:
+        type: string
+    type: object
+  controllers.DeleteTaskInput:
+    properties:
+      taskID:
+        type: integer
+    type: object
+  controllers.IDInput:
+    properties:
+      id:
+        type: integer
+    type: object
+  controllers.LoginUserInput:
+    properties:
+      password:
+        type: string
+      username:
+        type: string
+    type: object
+  controllers.PatchTaskInput:
+    properties:
+      taskID:
+        type: integer
+    type: object
+  controllers.PostTaskInput:
+    properties:
+      description:
+        type: string
+      taskName:
+        type: string
+    type: object
+  controllers.PutTaskInput:
+    properties:
+      description:
+        type: string
+      status:
+        type: boolean
+      taskID:
+        type: integer
+      taskName:
+        type: string
+    type: object
+  controllers.UpdateUserByIDInput:
+    properties:
+      address:
+        type: string
+      name:
+        type: string
+      password:
+        type: string
+      salary:
+        type: integer
+      username:
+        type: string
+    type: object
+  models.Task:
+    properties:
+      description:
+        type: string
+      id:
+        type: integer
+      status:
+        type: boolean
+      task_name:
+        type: string
+      user_id:
+        type: integer
+    type: object
+  models.User:
+    properties:
+      address:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      password:
+        type: string
+      salary:
+        type: integer
+      username:
+        type: string
+    type: object
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+paths:
+  /admin/createUser:
+    post:
+      description: Creating a new User.
+      parameters:
+      - description: the body to create a new User
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/controllers.CreateUserInput'
+      - description: 'Authorization. How to input in swagger : ''Bearer <insert_your_token_here>'''
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.User'
+      security:
+      - BearerToken: []
+      summary: Create New CreateUser.
+      tags:
+      - Admin
+  /admin/deleteUserByID:
+    delete:
+      description: Delete a User by id.
+      parameters:
+      - description: the body to delete a User
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/controllers.IDInput'
+      - description: 'Authorization. How to input in swagger : ''Bearer <insert_your_token_here>'''
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: boolean
+            type: object
+      security:
+      - BearerToken: []
+      summary: Delete one User.
+      tags:
+      - Admin
+  /admin/getAllUser:
+    get:
+      description: Get a list of Users.
+      parameters:
+      - description: 'Authorization. How to input in swagger : ''Bearer <insert_your_token_here>'''
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.User'
+            type: array
+      security:
+      - BearerToken: []
+      summary: Get all Users.
+      tags:
+      - Admin
+  /admin/getUserByID:
+    post:
+      description: Get a User by id.
+      parameters:
+      - description: the body to get a User
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/controllers.IDInput'
+      - description: 'Authorization. How to input in swagger : ''Bearer <insert_your_token_here>'''
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.User'
+      security:
+      - BearerToken: []
+      summary: Get GetUserByID.
+      tags:
+      - Admin
+  /admin/updateUserByID/{id}:
+    patch:
+      description: Update User By ID.
+      parameters:
+      - description: user id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: the body to update User
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/controllers.UpdateUserByIDInput'
+      - description: 'Authorization. How to input in swagger : ''Bearer <insert_your_token_here>'''
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      security:
+      - BearerToken: []
+      summary: Update User.
+      tags:
+      - Admin
+  /login:
+    post:
+      description: Logging in to get jwt token to access admin or user api by roles.
+      parameters:
+      - description: the body to login a user
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/controllers.LoginUserInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Login with credential.
+      tags:
+      - Auth
+  /task/DeleteTask:
+    delete:
+      description: Delete a task by id.
+      parameters:
+      - description: the body to delete task
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/controllers.DeleteTaskInput'
+      - description: 'Authorization. How to input in swagger : ''Bearer <insert_your_token_here>'''
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: boolean
+            type: object
+      security:
+      - BearerToken: []
+      summary: Delete one Item.
+      tags:
+      - Task
+  /task/GetTask:
+    get:
+      description: Get all Task by login.
+      parameters:
+      - description: 'Authorization. How to input in swagger : ''Bearer <insert_your_token_here>'''
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Task'
+      security:
+      - BearerToken: []
+      summary: Get GetTask.
+      tags:
+      - Task
+  /task/PatchTask:
+    patch:
+      description: Set Task as Done by ID.
+      parameters:
+      - description: the body to patch task
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/controllers.PatchTaskInput'
+      - description: 'Authorization. How to input in swagger : ''Bearer <insert_your_token_here>'''
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      security:
+      - BearerToken: []
+      summary: Set Task as Done.
+      tags:
+      - Task
+  /task/PostTask:
+    post:
+      description: Creating a new Task.
+      parameters:
+      - description: the body to create a new Task
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/controllers.PostTaskInput'
+      - description: 'Authorization. How to input in swagger : ''Bearer <insert_your_token_here>'''
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Task'
+      security:
+      - BearerToken: []
+      summary: Create New Task.
+      tags:
+      - Task
+  /task/PutTask:
+    put:
+      description: Change Task By ID.
+      parameters:
+      - description: the body to update task
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/controllers.PutTaskInput'
+      - description: 'Authorization. How to input in swagger : ''Bearer <insert_your_token_here>'''
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      security:
+      - BearerToken: []
+      summary: Mark Task as Done.
+      tags:
+      - Task
+  /user/profile:
+    get:
+      description: Get a Profile by login auth.
+      parameters:
+      - description: 'Authorization. How to input in swagger : ''Bearer <insert_your_token_here>'''
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.User'
+      security:
+      - BearerToken: []
+      summary: Get User Profile.
+      tags:
+      - User
+swagger: "2.0"
