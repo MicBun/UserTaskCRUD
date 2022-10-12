@@ -19,10 +19,6 @@ How to use
 Database included and can be accessed at http://localhost:5003
 
 ---
-# Screenshot
-Screenshot can be seen at screenshot folder
-
----
 # Structure Folder
 ```
 root
